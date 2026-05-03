@@ -56,21 +56,35 @@
 <section class="section">
   <h2>Qualitative Results</h2>
 
-  <h3>Alignment Heatmap Videos (Top-1 Image Patch Visualization)</h3>
-  <p>The videos below visualize <b>frame-level cross-modal alignment between score images and audio performances</b> by retrieving the most similar image patch for each audio frame (i.e., top-1 patch retrieval) on pieces from the MSMD dataset  <a href="#ref1" class="cite">[1]</a>.
+  <p>
+    We evaluate our best-performing configuration (FuSiLi, Same Piece + Pos. Mutations) qualitatively on <b>frame-level cross-modal alignment between score images and audio performances</b>.
+    We visualize retrieved image patches for each audio frame to assess local correspondence quality under both in-domain and out-of-domain settings, and compare it against a standard global contrastive baseline trained with the same configuration (Baseline, Same Piece + Pos. Mutations) to highlight localized alignments learned by FuSiLi. 
+    We also include the alignment matrices produced for each example.
+  </p>
+
+
+  <h3>In-Domain Alignment (Top-1 Image Patch Retrieval)</h3>
+  <p>
+    On the MSMD dataset <a href="#ref1" class="cite">[1]</a>, we visualize top-1 image patch retrieval for each audio frame.
+  </p>
+
+
+  <!-- <p>The videos below visualize <b>frame-level cross-modal alignment between score images and audio performances</b> by retrieving the most similar image patch for each audio frame (i.e., top-1 patch retrieval) on pieces from the MSMD dataset  <a href="#ref1" class="cite">[1]</a>.
     This is achieved by computing a similarity matrix between audio frame and image patch embeddings, and taking an argmax over the patch dimension for each audio frame.
-  </p><p>We compare our best-performing configuration (FuSiLi, Same Piece + Pos. Mutations) against a standard global contrastive baseline trained with the same configuration (Baseline, Same Piece + Pos. Mutations) to highlight localized alignments learned by FuSiLi. </p>
+  </p><p>We compare our best-performing configuration (FuSiLi, Same Piece + Pos. Mutations) against a standard global contrastive baseline trained with the same configuration (Baseline, Same Piece + Pos. Mutations) to highlight localized alignments learned by FuSiLi. </p> -->
 
   <div class="video-pair-grid">
 
-    <!-- Example 1 -->
     <h3 class="example-title">Example 1</h3>
     <div class="video-row">
   
+
+    
       <div class="video-card">
         <video controls>
           <source src="assets/msmd_1411.mp4" type="video/mp4">
         </video>
+        <img src="assets/msmd_1411.png" class="align-matrix">
         <div class="label">FuSiLi</div>
       </div>
   
@@ -78,7 +92,16 @@
         <video controls>
           <source src="assets/msmd_1411_baseline.mp4" type="video/mp4">
         </video>
+        <img src="assets/msmd_1411_baseline.png" class="align-matrix">
         <div class="label">Global Baseline</div>
+      </div>
+
+      <div class="video-card">
+        <video controls>
+          <source src="assets/msmd_1411_gt.mp4" type="video/mp4">
+        </video>
+        <img src="assets/msmd_1411_gt.png" class="align-matrix">
+        <div class="label">Ground Truth</div>
       </div>
   
     </div>
@@ -92,6 +115,7 @@
         <video controls>
           <source src="assets/msmd_1431.mp4" type="video/mp4">
         </video>
+        <img src="assets/msmd_1431.png" class="align-matrix">
         <div class="label">FuSiLi</div>
       </div>
   
@@ -99,7 +123,16 @@
         <video controls>
           <source src="assets/msmd_1431_baseline.mp4" type="video/mp4">
         </video>
+        <img src="assets/msmd_1431_baseline.png" class="align-matrix">
         <div class="label">Global Baseline</div>
+      </div>
+
+      <div class="video-card">
+        <video controls>
+          <source src="assets/msmd_1431_gt.mp4" type="video/mp4">
+        </video>
+        <img src="assets/msmd_1431_gt.png" class="align-matrix">
+        <div class="label">Ground Truth</div>
       </div>
   
     </div>
@@ -113,6 +146,7 @@
         <video controls>
           <source src="assets/msmd_2341.mp4" type="video/mp4">
         </video>
+        <img src="assets/msmd_2341.png" class="align-matrix">
         <div class="label">FuSiLi</div>
       </div>
   
@@ -120,14 +154,46 @@
         <video controls>
           <source src="assets/msmd_2341_baseline.mp4" type="video/mp4">
         </video>
+        <img src="assets/msmd_2341_baseline.png" class="align-matrix">
         <div class="label">Global Baseline</div>
       </div>
   
+      <div class="video-card">
+        <video controls>
+          <source src="assets/msmd_2341_gt.mp4" type="video/mp4">
+        </video>
+        <img src="assets/msmd_2341_gt.png" class="align-matrix">
+        <div class="label">Ground Truth</div>
+      </div>
     </div>
   
   </div>
 
-  <h3>Alignment Matrix Comparison</h3>
+  <h3>Out-of-Domain Alignment (Top-3 Image Patch Retrieval)</h3>
+  <p>
+    We further evaluate robustness under domain shift using the YTSV dataset <a href="#ref2" class="cite">[2]</a>.
+    In this setting, we visualize the top-3 most similar image patches per audio frame, reflecting increased ambiguity in cross-domain alignment.
+  </p>
+
+  <div class="video-row two-videos">
+    <div class="video-card">
+      <video controls>
+        <source src="assets/ytsv_8.mp4" type="video/mp4">
+      </video>
+      <img src="assets/ytsv_8.png" class="align-matrix">
+      <div class="label">FuSiLi</div>
+    </div>
+  
+    <div class="video-card">
+      <video controls>
+        <source src="assets/ytsv_8_baseline.mp4" type="video/mp4">
+      </video>
+      <img src="assets/ytsv_8_baseline.png" class="align-matrix">
+      <div class="label">Global Baseline</div>
+    </div>
+  </div>
+
+  <!-- <h3>Alignment Matrix Comparison</h3>
   Placeholder
 
   <img src="assets/fig2.png" class="figure">
@@ -135,7 +201,7 @@
   <p class="caption">
     Figure 2: Ground truth vs FuSiLi vs baseline alignment matrices.
 
-  </p>
+  </p> -->
 </section>
 
 <!-- <section class="section"> -->
@@ -153,8 +219,8 @@
               <th colspan="2">Local Eval</th>
               <th colspan="2">Point & Retrieve</th>
       
-              <th colspan="4">Global (PDMX<a href="#ref2" class="cite">[2]</a>)</th>
-              <th colspan="4">Global (YTSV<a href="#ref3" class="cite">[3]</a>)</th>
+              <th colspan="4">Global (PDMX<a href="#ref3" class="cite">[3]</a>)</th>
+              <th colspan="4">Global (YTSV<a href="#ref2" class="cite">[2]</a>)</th>
               <th colspan="4">Global (MSMD<a href="#ref1" class="cite">[1]</a>)</th>
             </tr>
       
@@ -224,14 +290,14 @@
         [1] Matthias Dorfer, Jan Hajič jr., Andreas Arzt, Harald Frostel, Gerhard Widmer. Learning Audio-Sheet Music Correspondences for Cross-Modal Retrieval and Piece Identification. <i>Transactions of the International Society for Music Information Retrieval</i>, issue 1, 2018.
     </p>
     <p id="ref2" class="reference">
-        [2] Phillip Long, Zachary Novack, Taylor Berg-Kirkpatrick, Julian McAuley.
-  PDMX: A Large-Scale Public Domain MusicXML Dataset for Symbolic Music Processing.
-  <i>ICASSP 2025 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)</i>, 2025. IEEE.
+      [3] Jongmin Jung, Dongmin Kim, Sihun Lee, Seola Cho, Hyungjoon So, Irmak Bukey, Chris Donahue, Dasaem Jeong.<br>
+      U-MusT: A Unified Framework for Cross-modal Translation of Score Images, Symbolic Music, and Performance Audio.<br>
+      <i>IEEE Transactions on Audio, Speech and Language Processing</i>, 2025. IEEE.
     </p>
     <p id="ref3" class="reference">
-        [3] Jongmin Jung, Dongmin Kim, Sihun Lee, Seola Cho, Hyungjoon So, Irmak Bukey, Chris Donahue, Dasaem Jeong.<br>
-        U-MusT: A Unified Framework for Cross-modal Translation of Score Images, Symbolic Music, and Performance Audio.<br>
-        <i>IEEE Transactions on Audio, Speech and Language Processing</i>, 2025. IEEE.
+      [2] Phillip Long, Zachary Novack, Taylor Berg-Kirkpatrick, Julian McAuley.
+      PDMX: A Large-Scale Public Domain MusicXML Dataset for Symbolic Music Processing.
+      <i>ICASSP 2025 IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)</i>, 2025. IEEE.
       </p>
 </section>
 

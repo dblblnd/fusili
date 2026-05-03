@@ -68,7 +68,7 @@ body {
     /* Videos */
     .video-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     }
     
@@ -122,6 +122,12 @@ body {
     .video-grid {
     grid-template-columns: 1fr;
     }
+
+    @media (max-width: 768px) {
+      .video-row {
+        grid-template-columns: 1fr;
+      }
+    }
     
     .header h1 {
     font-size: 24px;
@@ -145,7 +151,7 @@ body {
       /* row layout */
       .video-row {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 20px;
         align-items: start;
       }
@@ -211,3 +217,43 @@ body {
         margin-top: 6px;
         line-height: 1.3;
       }
+
+      .video-row.two-videos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        
+        /* key part ↓ */
+        max-width: calc((100% - 40px) * 2 / 3 + 20px);
+        margin: 0 auto;
+      
+        gap: 20px;
+      }
+
+      .video-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Keeps everything centered */
+        width: 100%;
+    }
+    
+    .video-card video {
+        width: 100%;       /* Fill the card width */
+        display: block;    /* Removes bottom whitespace/gap */
+        border-radius: 8px 8px 0 0; /* Optional: round only top corners */
+    }
+    
+    .align-matrix {
+        width: 100%;       /* Force image to match video width */
+        height: auto;      /* Maintain image aspect ratio */
+        display: block;
+        margin-top: 0;     /* Flush against the video */
+        border: 1px solid #ddd;
+        border-top: none;  /* Avoid double border between video and image */
+        border-radius: 0 0 8px 8px; /* Optional: round only bottom corners */
+    }
+    
+    .label {
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+    }
